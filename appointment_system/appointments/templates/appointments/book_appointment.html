@@ -1,0 +1,16 @@
+<!-- appointments/templates/appointments/book_appointment.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment</title>
+</head>
+<body>
+    <h1>Book Appointment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Book Appointment">
+    </form>
+</body>
+</html>

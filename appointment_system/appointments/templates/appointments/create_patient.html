@@ -1,0 +1,16 @@
+<!-- appointments/templates/appointments/create_patient.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Patient</title>
+</head>
+<body>
+    <h1>Create Patient</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create Patient">
+    </form>
+</body>
+</html>
