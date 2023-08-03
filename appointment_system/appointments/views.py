@@ -8,15 +8,25 @@ def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, 'appointments/doctor_list.html', {'doctors': doctors})
 
-def doctor_appointment(request,doctor_id):
-    doctor = Doctor.objects.get(id=doctor_id)
-    appointments = Appointment.objects.filter(doctor=doctor)
-    return render(request,'appointments/appointment_list.html', {'appointments': appointments})
+def doctor_info(request,doctor_id):
+    doctor = Doctor.objects.filter(id=doctor_id)
+    appointments = Appointment.objects.filter(doctor=doctor[0])
+    return render(request,'appointments/doctor_info.html', {'appointments': appointments , 'doctors': doctor})
 
-def patient_appointment(request,patient_id):
-    doctor = Patient.objects.get(id=patient_id)
-    appointments = Appointment.objects.filter(patient=doctor)
-    return render(request,'appointments/appointment_list.html', {'appointments': appointments})
+def create_patient(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('patient_list')
+    else:
+        form = PatientForm()
+    return render(request, 'appointments/create_patient.html', {'form': form})
+
+def patient_info(request,patient_id):
+    patient = Patient.objects.filter(id=patient_id)
+    appointments = Appointment.objects.filter(patient=patient[0])
+    return render(request,'appointments/patient_info.html', {'appointments': appointments , 'patients':patient})
 
 def patient_list(request):
     patients = Patient.objects.all()
@@ -38,6 +48,11 @@ def edit_appointment(request, appointment_id):
 
     return render(request, 'appointments/edit_appointment.html', {'form': form, 'appointment': appointment})
 
+def appointment(request,appointment_id):
+    appointments = Appointment.objects.filter(id=appointment_id)
+    return render(request,'appointments/appointment_list.html', {'appointments': appointments})
+
+
 def create_doctor(request):
     if request.method == 'POST':
         form = DoctorForm(request.POST)
@@ -47,6 +62,7 @@ def create_doctor(request):
     else:
         form = DoctorForm()
     return render(request, 'appointments/create_doctor.html', {'form': form})
+
 def create_patient(request):
     if request.method == 'POST':
         form = PatientForm(request.POST)
