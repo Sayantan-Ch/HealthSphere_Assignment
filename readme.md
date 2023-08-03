@@ -4,7 +4,7 @@ The first thing to do is to clone the repository:
 
 ```sh
 $ git clone https://github.com/Sayantan-Ch/HealthSphere_Assignment.git
-$ cd HealthSphere_Assignment
+$ cd appointment_system
 ```
 
 Create a virtual environment to install dependencies in and activate it:
