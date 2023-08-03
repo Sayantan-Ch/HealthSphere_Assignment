@@ -47,5 +47,22 @@ Once `pip` has finished downloading the dependencies:
 | /appointments/appointments/edit/<appointment:id> | To edit an appointment  |
     
     
+# SuperUser Access
 
+|   Endpoint    | Purpose |
+| ------------- | ------------- |
+| /admin  | To open admin mode  |
 
+Creds: 
+    Username: admin
+    Password: admin
+
+All patients , doctors and appointments are registered in admin. This can be used to manually add data to model.
+
+### Note to create new superuser 
+
+```sh
+python manage.py createsuperuser
+```
+
+Follows the terminal steps to make cred and then use the same endpoint.
